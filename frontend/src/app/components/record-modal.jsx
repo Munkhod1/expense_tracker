@@ -6,6 +6,7 @@ export const RecordModal = ({ isOpen, close }) => {
     <dialog open={isOpen} className="modal">
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div className="modal-box max-w-[800px]">
+          {/* Хаах товч */}
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
             onClick={close}
@@ -13,7 +14,8 @@ export const RecordModal = ({ isOpen, close }) => {
             ✕
           </button>
           <h3 className="text-lg font-bold">Add Record</h3>
-          <div className="divider"></div>
+          {/* талбарыг хоёр хэсэгт хуваах тохиргоо */}
+          <div className="divider">-</div>
           <div className="flex gap-12">
             <RightSide />
             <LeftSide />
@@ -27,8 +29,10 @@ export const RecordModal = ({ isOpen, close }) => {
 export const RightSide = () => {
   const [activeTab, setActiveTab] = useState("INC");
 
+  // Энэ хэсэгт нэмэх товч дарах үед гарч ирэх хэсгийг хийсэн.
   return (
     <div className="w-2/5">
+      {/* add record darah uyed garch irne */}
       <div className="flex space-x-1 bg-gray-200 rounded-full mb-3">
         <button
           className={`px-11 py-2 rounded-full transition-colors duration-300 ${
@@ -51,14 +55,14 @@ export const RightSide = () => {
           Income
         </button>
       </div>
+      {/* amount bichih heseg */}
       <div className="flex flex-col gap-4 w-full">
-        {/* amount heseg */}
         <input
           type="text"
           placeholder="Amount"
           className="input input-bordered"
         />
-        {/* songolt */}
+        {/*category songoh  heseg */}
         <div className="flex flex-col">
           <label>Category</label>
           <select className="select select-bordered">
@@ -98,6 +102,7 @@ export const RightSide = () => {
   );
 };
 
+// нэмэлт мэдээлэл бичих хэсэг
 export const LeftSide = () => {
   return (
     <div className="flex flex-col w-3/5 gap-3">

@@ -19,7 +19,7 @@ app.use(logger());
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/records", recordRoutes);
+app.use("/record", recordRoutes);
 app.use("/categories", categoryRoutes);
 
 app.listen(PORT, () => {

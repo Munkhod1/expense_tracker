@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get(`${apiUrl}/records`);
+      const res = await axios.get(`${apiUrl}/record`);
       console.log("DD", res.data.guilgee);
       setTransactions(res.data.guilgee);
     } catch (error) {
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
   const getInfoCardData = async () => {
     try {
-      const res = await axios.get(`${apiUrl}/records/info`);
+      const res = await axios.get(`${apiUrl}/record/info`);
       console.log("ST", res.data);
       setCardInfo(res.data);
     } catch (error) {
@@ -53,6 +53,7 @@ const Dashboard = () => {
   }, [user]);
 
   console.log("cardInfo", cardInfo);
+  console.log(transactions);
   return (
     <div className="container mx-auto mt-6">
       <div className="container grid grid-cols-3 gap-10 ">
@@ -112,11 +113,26 @@ const Dashboard = () => {
         <BarChart />
         <DoughnurChart />
         {/* CHART */}
+
         {/* TRANSACTION LIST*/}
-        {transactions?.map((tr) => (
-          <div>{tr.name}</div>
-        ))}
       </div>
+
+      {transactions?.map((tr) => (
+        <div className="w-full mb-3 border-b-2 py-1 ">
+          {/* {tr.name}, {tr.amount} */}
+
+          <div className="flex items-center gap-3 justify-between">
+            <div className="flex gap-3">
+              <img src="./Ellipse-b1.svg" alt="" />
+              <div>
+                <div className="font-bold">{tr.name}</div>
+                <div className="text-sm opacity-50">{tr.created_at}</div>
+              </div>
+            </div>
+            <div className="text-sm opacity-50">{tr.amount}</div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
