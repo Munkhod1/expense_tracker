@@ -1,18 +1,39 @@
+import { DashboardContext } from "@/app/context/dashboard-context";
 import { Bar } from "react-chartjs-2";
 
-const BarChart = ({ barChartData }) => {
+const BarChart = () => {
+  const { bar } = useContext(DashboardContext);
   const data1 = {
-    labels: ["Jan", "Feb"],
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
     datasets: [
       {
         label: "Income",
         backgroundColor: "#22C55E",
-        data: [20_000, 15_000],
+        data: [
+          20_000, 15_000, 15_000, 15_000, 15_000, 15_000, 15_000, 15_000,
+          15_000, 15_000, 15_000, 15_000,
+        ],
       },
       {
         label: "Expense",
         backgroundColor: "#F87171",
-        data: [15_000, 10_000_000_000],
+        data: [
+          15_000, 10_000_000_000, 15_000, 15_000, 15_000, 15_000, 15_000,
+          15_000, 15_000, 15_000, 15_000, 15_000,
+        ],
       },
     ],
   };

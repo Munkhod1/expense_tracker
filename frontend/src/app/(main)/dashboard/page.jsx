@@ -20,6 +20,7 @@ import DoughnurChart from "@/app/components/dashboard/Doughnut";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Legend);
 
+// чарт хадгалах state хэсэг нэмж хадгалав
 const Dashboard = () => {
   const { user } = useContext(UserContext);
   const [transactions, setTransactions] = useState([]);

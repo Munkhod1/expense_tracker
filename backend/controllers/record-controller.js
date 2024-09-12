@@ -23,18 +23,26 @@ const getInfo = async (req, res) => {
 const getChartData = async (req, res) => {
   try {
     const donutChartData = await sql`
-    SELECT SUM(r.amount), c.name cat_name FROM record r 
-    INNER JOIN categories c ON r.cid=c.id
-    WHERE r.transaction_type='EXP'
+    SELECT SUM(r.amount), c.name cat_name 
+    FROM record r INNER JOIN category c 
+    ON r.cid=c.id WHERE r.transaction_type='EXP' 
     GROUP BY cat_name;
     `;
     const barChartData = await sql`
-    SELECT TO_CHAR(DATE_TRUNC('month', r.created_at), 'Mon') as sar, 
-    SUM(CASE WHEN r.transaction_type = 'EXP' THEN r.amount ELSE 0 END) as total_exp,
-    SUM(CASE WHEN r.transaction_type = 'INC' THEN r.amount ELSE 0 END) as total_inc
-    FROM records r
-    GROUP BY DATE_TRUNC('month', r.created_at) 
-    ORDER BY DATE_TRUNC('month', r.created_at);
+    -- barChart аа гаргаж ирье
+    SELECT 
+    TO_CHAR(DATE_TRUNC('month', r.created_at), 'Mon') AS sar,
+    EXTRACT(YEAR FROM r.created_at) AS year,
+    SUM(CASE WHEN r.transaction_type='INC' THEN r.amount ELSE 0 END)
+    AS total_income,
+    SUM(CASE WHEN r.transaction_type='EXP' THEN r.amount ELSE 0 END)
+    AS total_expense
+    FROM record r
+    GROUP BY
+    DATE_TRUNC('month', r.created_at), 
+    EXTRACT(YEAR FROM r.created_at)
+    ORDER BY 
+    year, DATE_TRUNC('month', r.created_at);
     `;
     res
       .status(200)
