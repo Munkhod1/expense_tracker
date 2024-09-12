@@ -8,6 +8,8 @@ import { RecordModal } from "./record-modal";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // энд алдаа гарав !!!
   const { user, fetchUserData } = useContext(UserContext);
 
   const logOut = () => {

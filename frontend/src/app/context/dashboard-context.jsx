@@ -24,7 +24,10 @@ export const DashboardProvider = ({ children }) => {
   }, []);
 
   return (
-    <DashboardContext.Provider value={{ bar: chartData, donut: chartData }}>
+    <DashboardContext.Provider
+      // Энд алдаа гарав
+      value={{ bar: chartData.bar, donut: chartData.donut }}
+    >
       {children}
     </DashboardContext.Provider>
   );
