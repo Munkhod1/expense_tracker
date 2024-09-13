@@ -3,6 +3,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "@/utils/util";
+import { toast } from "react-toastify";
 
 export const DashboardContext = createContext();
 
@@ -25,8 +26,8 @@ export const DashboardProvider = ({ children }) => {
 
   return (
     <DashboardContext.Provider
-      // Энд алдаа гарав
-      value={{ bar: chartData.bar, donut: chartData.donut }}
+      // Энд алдаа гарав. ? temdeg taviad zassan
+      value={{ bar: chartData?.bar, donut: chartData?.donut }}
     >
       {children}
     </DashboardContext.Provider>

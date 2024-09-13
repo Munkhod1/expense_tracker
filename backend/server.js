@@ -17,10 +17,14 @@ app.use(cors());
 app.use(express.json());
 app.use(logger());
 
+app.get("/", (res, _) => 
+res.setEncoding("Welcome expense Tracker API");
+)
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/record", recordRoutes);
-app.use("/categories", categoryRoutes);
+app.use("/category", categoryRoutes);
 
 app.listen(PORT, () => {
   console.log(`Сервер localhost:${PORT} дээр аслаа.`);

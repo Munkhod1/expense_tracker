@@ -1,4 +1,5 @@
 import { DashboardContext } from "@/app/context/dashboard-context";
+import { useContext } from "react";
 import { Bar } from "react-chartjs-2";
 
 const BarChart = () => {

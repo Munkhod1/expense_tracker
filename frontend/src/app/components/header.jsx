@@ -3,13 +3,15 @@
 import { PlusIcon } from "@/icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RecordModal } from "./record-modal";
+import { UserContext } from "../context/user-context";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // энд алдаа гарав !!!
+  // const { user, fetchUserData } = useContext(UserContext);
   const { user, fetchUserData } = useContext(UserContext);
 
   const logOut = () => {

@@ -2,9 +2,9 @@ const sql = require("../config/db");
 
 const getAllCategory = async (req, res) => {
   console.log("USER", req.user);
-  const data = await sql`SELECT * FROM categories`;
+  const data = await sql`SELECT * FROM category`;
 
-  res.status(200).json({ message: "success", categories: data });
+  res.status(200).json({ message: "success", category: data });
 };
 
 const createCategory = () => {};

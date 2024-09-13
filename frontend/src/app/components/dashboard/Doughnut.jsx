@@ -1,5 +1,5 @@
 import { DashboardContext } from "@/app/context/dashboard-context";
-import { UserContext } from "react";
+import { useContext, UserContext } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 const DoughnurChart = () => {
