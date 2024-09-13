@@ -17,9 +17,9 @@ app.use(cors());
 app.use(express.json());
 app.use(logger());
 
-app.get("/", (res, _) => 
-res.setEncoding("Welcome expense Tracker API");
-)
+app.get("/", (_, res) => {
+  res.send("Welcome expense Tracker API");
+});
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
