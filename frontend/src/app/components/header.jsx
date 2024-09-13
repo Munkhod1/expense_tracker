@@ -29,10 +29,10 @@ export const Header = () => {
         <Link href="/dashboard">
           <p>Dashboard</p>
         </Link>
-        <Link href="/records">
-          <p>Records</p>
+        <Link href="/record">
+          <p>Record</p>
         </Link>
-        <Link href="/records">
+        <Link href="/record">
           <p>{user?.name}</p>
         </Link>
       </div>

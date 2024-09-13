@@ -1,7 +1,7 @@
 import { SideBar, RecordCard } from "@/app/components";
 import { ArrowLeft, ArrowRight } from "@/icons";
 
-const Records = () => {
+const Record = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-8 flex gap-8">
       <SideBar />
@@ -79,4 +79,4 @@ const Records = () => {
   );
 };
 
-export default Records;
+export default Record;
