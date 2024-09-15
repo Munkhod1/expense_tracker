@@ -52,4 +52,15 @@ const getChartData = async (req, res) => {
   }
 };
 
-module.exports = { getAllRecord, getInfo, getChartData };
+const createRecord = async (req, res) => {
+  // const {id} = req.users;
+  const { name, uid, cid, amount, transaction_type, description} = req.body;
+  const data = await sql`
+  INSERT INTO record (uid, cid, name, amount, transaction_type, description)
+  VALUES(${uid}, ${cid}, ${name}, ${amount}, ${transaction_type}, ${description}); 
+  `;
+  console.log("DATA", data);
+  res.status(201).json({ message: "New record created successfully" });
+};
+
+module.exports = { createRecord, getAllRecord, getInfo, getChartData };

@@ -1,5 +1,8 @@
 "use client";
+import axios from "axios";
+
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const RecordModal = ({ isOpen, close }) => {
   return (
@@ -28,7 +31,38 @@ export const RecordModal = ({ isOpen, close }) => {
 
 export const RightSide = () => {
   const [activeTab, setActiveTab] = useState("INC");
+  const [recordFormData, setrecordFormData] = useState({
+    name: "",
+    amount: 0,
+    cid: "",
+    uid: "9f755169-830e-466d-a81c-a4956e82b9c4",
+    description: "",
+  });
 
+  const handleChangeForm = (e) => {
+    setrecordFormData({ ...recordFormData, [e.target.name]: e.target.value });
+  };
+  const addRecordData = async () => {
+    const newData = {
+      ...recordFormData,
+      transation_type: activeTab,
+    };
+    console.log("DD", newData);
+
+    const token = localStorage.getItem("token");
+    try {
+      const res = await axios.post(`${apiUrl}/record`, newData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 201) {
+        toast.success("record amjilttai nemegdlee");
+      }
+    } catch (error) {
+      toast.error("record nemeh uyed aldaa garlaa");
+    }
+  };
   // Энэ хэсэгт нэмэх товч дарах үед гарч ирэх хэсгийг хийсэн.
   return (
     <div className="w-2/5">
@@ -59,13 +93,26 @@ export const RightSide = () => {
       <div className="flex flex-col gap-4 w-full">
         <input
           type="text"
+          name="name"
+          placeholder="name"
+          className="input input-bordered"
+          onChange={handleChangeForm}
+        />
+        <input
+          type="text"
+          name="amount"
           placeholder="Amount"
           className="input input-bordered"
+          onChange={handleChangeForm}
         />
         {/*category songoh  heseg */}
         <div className="flex flex-col">
           <label>Category</label>
-          <select className="select select-bordered">
+          <select
+            className="select select-bordered"
+            name="cid"
+            onChange={handleChangeForm}
+          >
             <option disabled selected>
               Choose
             </option>
@@ -94,6 +141,7 @@ export const RightSide = () => {
           className={`btn ${
             activeTab === "EXP" ? "bg-blue-500" : "bg-green-500"
           } text-white w-full`}
+          onClick={addRecordData}
         >
           Add Record
         </button>
@@ -101,7 +149,6 @@ export const RightSide = () => {
     </div>
   );
 };
-
 // нэмэлт мэдээлэл бичих хэсэг
 export const LeftSide = () => {
   return (
